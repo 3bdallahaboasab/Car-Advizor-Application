@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:test/core/Helper/cache_helper.dart';
-import 'package:test/core/MainManagements/main_managements.dart';
-import 'package:test/core/Strings/strings_application.dart';
-import 'package:test/core/Theme/dark_theme.dart';
-import 'package:test/core/Theme/light_theme.dart';
-import 'package:test/core/l10n/l10n.dart';
+import 'package:test/Data/Helper/cache_helper.dart';
+import 'package:test/Data/MainManagements/main_managements.dart';
+import 'package:test/Data/Strings/strings_application.dart';
+import 'package:test/Data/Theme/dark_theme.dart';
+import 'package:test/Data/Theme/light_theme.dart';
+import 'package:test/l10n/l10n.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test/layout_screen.dart';
 import 'ingections_container.dart' as di;

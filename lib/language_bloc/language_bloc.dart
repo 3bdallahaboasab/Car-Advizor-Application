@@ -1,9 +1,8 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:flutter/material.dart';
-import 'package:test/core/Helper/cache_helper.dart';
-import 'package:test/core/Strings/cache_string.dart';
- 
+ import 'package:flutter/material.dart';
+import 'package:test/Data/Helper/cache_helper.dart';
+import 'package:test/Data/Strings/cache_string.dart';
 
 part 'language_event.dart';
 part 'language_state.dart';

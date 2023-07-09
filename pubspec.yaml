@@ -9,27 +9,42 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  # Language
   flutter_localizations:
     sdk: flutter
-  intl: ^0.17.0
+  intl: ^0.18.0
+
   cupertino_icons: ^1.0.2
+  # State Managements
   bloc: ^8.1.2
   flutter_bloc: ^8.1.3
+  # Cache Data
   shared_preferences: ^2.0.15
   cached_network_image: ^3.2.0
+  # Indecator
   smooth_page_indicator: ^1.0.0+2
+  # Phone Field
   intl_phone_field: ^3.1.0
+  # SVG Icons
   flutter_svg: ^2.0.0+1
+  # Loading
   shimmer: ^2.0.0
+  # Image Picker
   image_picker: ^1.0.0
-  dartz: ^0.10.1
+  # Value Equatable
   equatable: ^2.0.5
+  # Service Locator
   get_it: ^7.6.0
+  # Internet Conniction
   internet_connection_checker: ^1.0.0+1
+  # Bottom Navigation Bar
   animated_bottom_navigation_bar: ^1.2.0
+  # Chart
   syncfusion_flutter_charts: ^21.2.3
   syncfusion_flutter_gauges: ^21.2.3
+  # PDF
   flutter_pdfview: ^1.0.0
+  # Click Serial Namber Image
   google_mlkit_text_recognition: ^0.8.1
   image_cropper: ^3.0.0
   camera: ^0.10.5+2

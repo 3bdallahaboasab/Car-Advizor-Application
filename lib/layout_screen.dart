@@ -1,22 +1,25 @@
 import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
+import 'package:test/Data/Functions/app_size.dart';
+import 'package:test/Data/Functions/navigation.dart';
+import 'package:test/Data/Icon/app_icons.dart';
+import 'package:test/Data/Theme/color_constant.dart';
+import 'package:test/Presentation/AddCar/Screens/add_car_screen.dart';
+import 'package:test/Presentation/Home/Screens/home_screen.dart';
+import 'package:test/Presentation/MyCars/Screens/my_cars_screen.dart';
+import 'package:test/Presentation/SellCar/Screens/sell_car_screen.dart';
+import 'package:test/Presentation/menu/Screens/menu_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:test/core/Functions/app_size.dart';
-import 'package:test/core/Functions/navigation.dart';
-import 'package:test/core/Icon/app_icons.dart';
-import 'package:test/core/Theme/color_constant.dart';
-import 'package:test/features/addCar/presentation/pages/add_car_screen.dart';
-
-import 'package:test/features/home/presentation/pages/home_screen.dart';
-import 'package:test/features/menu/presentation/pages/menu_screen.dart';
-import 'package:test/features/myCars/presentation/pages/my_cars_screen.dart';
-import 'package:test/features/sellCar/presentation/pages/sell_car_screen.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class LayoutScreen extends StatefulWidget {
   final int? currentIndex;
-  const LayoutScreen({Key? key, this.currentIndex}) : super(key: key);
+  const LayoutScreen({
+    Key? key,
+    this.currentIndex,
+  }) : super(key: key);
 
   @override
-  State<LayoutScreen> createState() => _LayoutStateScreen();
+  State<StatefulWidget> createState() =>_LayoutStateScreen();
 }
 
 class _LayoutStateScreen extends State<LayoutScreen> {
@@ -36,12 +39,7 @@ class _LayoutStateScreen extends State<LayoutScreen> {
     Icons.menu,
   ];
 
-  List<String> title = [
-    'Dashboard',
-    'Add',
-    'My Car',
-    'Menu',
-  ];
+  List<String> title = [];
 
   @override
   void initState() {
@@ -57,6 +55,12 @@ class _LayoutStateScreen extends State<LayoutScreen> {
 
   @override
   Widget build(BuildContext context) {
+    title = [
+      AppLocalizations.of(context)!.dashboard,
+      AppLocalizations.of(context)!.add,
+      AppLocalizations.of(context)!.myCars,
+      AppLocalizations.of(context)!.menu,
+    ];
     return Scaffold(
       body: screen[currentIndex],
       floatingActionButton: FloatingActionButton(
@@ -65,7 +69,7 @@ class _LayoutStateScreen extends State<LayoutScreen> {
             Navigator.push(context, downToTop(const SellCarScreen())),
         child: Center(
           child: Text(
-            'Sell',
+            AppLocalizations.of(context)!.sell,
             style: TextStyle(
                 fontSize: AppSize(context).smallText2,
                 color: AppColors.whiteColor1),

@@ -1,0 +1,665 @@
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:test/Data/Functions/app_size.dart';
+import 'package:test/Data/Functions/navigation.dart';
+import 'package:test/Data/Theme/color_constant.dart';
+import 'package:test/Presentation/menu/Components/widget_cavar_image_profile.dart';
+import 'package:test/Presentation/menu/Components/widget_form_data.dart';
+import 'package:test/Presentation/menu/Components/widget_image_profile.dart';
+import 'package:test/Presentation/Components/widget_button.dart';
+import 'package:test/Presentation/Components/widget_text_from_filds.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
+enum SingingCharacter { lafayette, jefferson }
+
+class MyStoreScreen extends StatefulWidget {
+  const MyStoreScreen({super.key});
+
+  @override
+  State<MyStoreScreen> createState() => _MyStoreScreenState();
+}
+
+class _MyStoreScreenState extends State<MyStoreScreen> {
+  TextEditingController name = TextEditingController();
+  TextEditingController email = TextEditingController();
+  TextEditingController phone = TextEditingController();
+  TextEditingController mobail = TextEditingController();
+  TextEditingController about = TextEditingController();
+  TextEditingController invoice = TextEditingController();
+  TextEditingController startInvoice = TextEditingController();
+  TextEditingController domain = TextEditingController();
+  TextEditingController brand = TextEditingController();
+  TextEditingController currancy = TextEditingController();
+  TextEditingController country = TextEditingController();
+  TextEditingController city = TextEditingController();
+  TextEditingController address = TextEditingController();
+  TextEditingController facebook = TextEditingController();
+  TextEditingController instgram = TextEditingController();
+  TextEditingController twitter = TextEditingController();
+  TextEditingController linkedIn = TextEditingController();
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: _buildAppBar(context),
+      body: _buildBody(context),
+      bottomNavigationBar: _buildBottomNavigationBar(),
+    );
+  }
+
+  WidgetButton _buildBottomNavigationBar() {
+    return WidgetButton(
+      radius: 0,
+      title: 'Update',
+      onTap: () {},
+    );
+  }
+
+  SingleChildScrollView _buildBody(BuildContext context) {
+    AppLocalizations lang = AppLocalizations.of(context)!;
+
+    return SingleChildScrollView(
+      physics: const BouncingScrollPhysics(),
+      child: Stack(
+        alignment: Alignment.topCenter,
+        children: [
+          // * Image Cavar
+          WidgetCavarImageProfile(
+            image:
+                'https://hips.hearstapps.com/hmg-prod/images/2023-jeep-compass-101-1669747450.jpg?crop=0.705xw:0.529xh;0.103xw,0.317xh&resize=1200:*',
+            update: () => showMenu(),
+          ),
+          // * Containt
+          Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              SizedBox(height: AppSize(context).height * 0.19),
+              // * Image Profile
+              WidgetImageProfile(
+                image:
+                    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzpAIprXCYrYC9zsTc6oJJdUPZXUrKCWgJ7g&usqp=CAU',
+                update: () => showMenu(),
+              ),
+              // * Store Informations
+              WidgetFormData(
+                title: lang.storeInformation,
+                children: [
+                  // * Name
+                  CustomInputTextForm(
+                    title: lang.storeName,
+                    controller: name,
+                  ),
+                  // * Email
+                  CustomInputTextForm(
+                    title: lang.storeEmail,
+                    controller: email,
+                  ),
+                  // * Phone
+                  CustomInputTextForm(
+                    title: lang.storephone,
+                    controller: phone,
+                    textInputType: TextInputType.phone,
+                  ),
+                  // * Mobail
+                  CustomInputTextForm(
+                    title: lang.storemobail,
+                    controller: mobail,
+                  ),
+                  // * About
+                  CustomInputTextForm(
+                    title: lang.storeabout,
+                    controller: about,
+                    maxLine: 3,
+                  ),
+                  // * Brands
+                  CustomInputTextForm(
+                    title: lang.brands,
+                    controller: brand,
+                    onTap: () => showDetailsBrands(),
+                  ),
+                  // * Currency
+                  CustomInputTextForm(
+                    title: lang.currency,
+                    controller: currancy,
+                    onTap: () => showDetails(lang.currency),
+                  ),
+                  // * Invoice prefix
+                  CustomInputTextForm(
+                    title: lang.invoicePrefix,
+                    controller: invoice,
+                  ),
+                  // * Invoice start from
+                  CustomInputTextForm(
+                    title: lang.invoiceStartFrom,
+                    controller: startInvoice,
+                  ),
+                  // * Store Domain
+                  CustomInputTextForm(
+                    title: lang.storeDomain,
+                    controller: domain,
+                    isLast: true,
+                  ),
+                ],
+              ),
+              // * Store Address
+              WidgetFormData(
+                title: lang.storeAddress,
+                children: [
+                  // * Country
+                  CustomInputTextForm(
+                    title: lang.country,
+                    controller: country,
+                    onTap: () => showDetails(lang.country),
+                  ),
+                  // * City
+                  CustomInputTextForm(
+                    title: lang.city,
+                    controller: city,
+                    onTap: () => showDetails(lang.city),
+                  ),
+                  // * Address
+                  CustomInputTextForm(
+                    title: lang.address,
+                    controller: address,
+                    maxLine: 3,
+                    isLast: true,
+                  ),
+                ],
+              ),
+              // * Store Social Links
+              WidgetFormData(
+                title: lang.storeSocialLinks,
+                children: [
+                  // * Facebook
+                  CustomInputTextForm(
+                    title: 'Facebook',
+                    controller: facebook,
+                  ),
+                  // * Instgram
+                  CustomInputTextForm(
+                    title: 'Instgram',
+                    controller: instgram,
+                  ),
+                  // * Twitter
+                  CustomInputTextForm(
+                    title: 'Twitter',
+                    controller: twitter,
+                  ),
+                  // * LinkedIn
+                  CustomInputTextForm(
+                    title: 'LinkedIn',
+                    controller: linkedIn,
+                    isLast: true,
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+
+  AppBar _buildAppBar(BuildContext context) {
+    AppLocalizations lang = AppLocalizations.of(context)!;
+
+    return AppBar(
+      centerTitle: true,
+      systemOverlayStyle: SystemUiOverlayStyle(
+        statusBarColor: AppColors.primaryColor,
+        statusBarIconBrightness: Brightness.light,
+      ),
+      backgroundColor: AppColors.primaryColor,
+      title: Text(
+        lang.myStore,
+        style: TextStyle(
+          fontSize: AppSize(context).mediumText3,
+          color: AppColors.whiteColor1,
+          fontWeight: FontWeight.bold,
+        ),
+      ),
+    );
+  }
+
+  void showMenu() {
+    AppLocalizations lang = AppLocalizations.of(context)!;
+
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext context) {
+        return AlertDialog(
+            backgroundColor: Colors.transparent,
+            contentPadding: EdgeInsets.zero,
+            insetPadding: const EdgeInsets.only(bottom: 20),
+            elevation: 0.0,
+            content: Column(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Container(
+                  width: AppSize(context).width * 0.9,
+                  padding: const EdgeInsets.all(8.0),
+                  decoration: const BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(10.0),
+                    ),
+                  ),
+                  child: Column(
+                    children: [
+                      InkWell(
+                        onTap: () {
+                          pop(context);
+                        },
+                        highlightColor: AppColors.backgroundColor,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Icon(
+                              Icons.image_outlined,
+                              size: 20,
+                              color: AppColors.indigoColor,
+                            ),
+                            SizedBox(width: AppSize(context).width * 0.02),
+                            Text(
+                              lang.selectApictureFromGallery,
+                              style: TextStyle(
+                                fontSize: AppSize(context).smallText3,
+                                color: AppColors.indigoColor,
+                                fontWeight: FontWeight.normal,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      const Divider(),
+                      InkWell(
+                        onTap: () {
+                          pop(context);
+                        },
+                        highlightColor: AppColors.backgroundColor,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Icon(
+                              Icons.camera_alt,
+                              size: 20,
+                              color: AppColors.indigoColor,
+                            ),
+                            SizedBox(width: AppSize(context).width * 0.02),
+                            Text(
+                              lang.takeApictureFromCamera,
+                              style: TextStyle(
+                                fontSize: AppSize(context).smallText3,
+                                color: AppColors.indigoColor,
+                                fontWeight: FontWeight.normal,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                const SizedBox(height: 10),
+                InkWell(
+                  borderRadius: const BorderRadius.all(
+                    Radius.circular(10.0),
+                  ),
+                  onTap: () => pop(context),
+                  child: Container(
+                    padding: const EdgeInsets.all(8.0),
+                    decoration: const BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(10.0),
+                      ),
+                    ),
+                    child: Center(
+                      child: Text(
+                        lang.back,
+                        style: TextStyle(
+                          fontSize: AppSize(context).smallText3,
+                          color: AppColors.indigoColor,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ),
+                )
+              ],
+            ));
+      },
+    );
+  }
+
+  void showDetailsBrands() {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        content: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(
+              'Brand(s)',
+              style: TextStyle(
+                fontSize: AppSize(context).mediumText2,
+                color: AppColors.blackColor1,
+                fontWeight: FontWeight.w400,
+              ),
+            ),
+            const Divider(),
+            SizedBox(
+              height: AppSize(context).height * 0.3,
+              child: ListView.separated(
+                itemCount: 3,
+                physics: const BouncingScrollPhysics(),
+                separatorBuilder: (context, index) =>
+                    SizedBox(height: AppSize(context).height * 0.0),
+                itemBuilder: (context, index) {
+                  return Row(
+                    children: [
+                      Checkbox(value: false, onChanged: (v) {}),
+                      const SizedBox(width: 6),
+                      Text(
+                        'Example',
+                        style: TextStyle(
+                          fontSize: AppSize(context).smallText2,
+                          color: AppColors.blackColor1,
+                          fontWeight: FontWeight.w400,
+                        ),
+                      ),
+                    ],
+                  );
+                },
+              ),
+            ),
+          ],
+        ),
+        actions: [
+          const Divider(),
+          Row(
+            children: [
+              Expanded(
+                child: InkWell(
+                  onTap: () {
+                    pop(context);
+                  },
+                  child: Container(
+                    decoration: const BoxDecoration(
+                      border: Border(
+                        right: BorderSide(
+                          color: AppColors.lightGreyColor,
+                        ),
+                      ),
+                    ),
+                    child: Center(
+                      child: InkWell(
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                            'Back',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontSize: AppSize(context).smallText2,
+                              color: AppColors.indigoColor,
+                              fontWeight: FontWeight.normal,
+                              fontStyle: FontStyle.italic,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              Expanded(
+                child: InkWell(
+                  onTap: () {
+                    setState(() {});
+                  },
+                  child: Center(
+                    child: InkWell(
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(
+                          'Select',
+                          style: TextStyle(
+                            fontSize: AppSize(context).smallText2,
+                            color: AppColors.indigoColor,
+                            fontWeight: FontWeight.normal,
+                            fontStyle: FontStyle.italic,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          )
+        ],
+      ),
+    );
+  }
+
+  void showDetails(String title) {
+    SingingCharacter? _character = SingingCharacter.lafayette;
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        content: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(
+              title,
+              style: TextStyle(
+                fontSize: AppSize(context).mediumText2,
+                color: AppColors.blackColor1,
+                fontWeight: FontWeight.w400,
+              ),
+            ),
+            const Divider(),
+            SizedBox(
+              height: AppSize(context).height * 0.3,
+              child: ListView.separated(
+                itemCount: 2,
+                physics: const BouncingScrollPhysics(),
+                separatorBuilder: (context, index) =>
+                    SizedBox(height: AppSize(context).height * 0.0),
+                itemBuilder: (context, index) {
+                  return Row(
+                    children: [
+                      Radio<SingingCharacter>(
+                        value: SingingCharacter.lafayette,
+                        groupValue: _character,
+                        onChanged: (SingingCharacter? value) {
+                          setState(() {
+                            _character = value;
+                          });
+                        },
+                      ),
+                      const SizedBox(width: 6),
+                      Text(
+                        'Example',
+                        style: TextStyle(
+                          fontSize: AppSize(context).smallText2,
+                          color: AppColors.blackColor1,
+                          fontWeight: FontWeight.w400,
+                        ),
+                      ),
+                    ],
+                  );
+                },
+              ),
+            ),
+          ],
+        ),
+        actions: [
+          const Divider(),
+          Row(
+            children: [
+              Expanded(
+                child: InkWell(
+                  onTap: () {
+                    pop(context);
+                  },
+                  child: Container(
+                    decoration: const BoxDecoration(
+                      border: Border(
+                        right: BorderSide(
+                          color: AppColors.lightGreyColor,
+                        ),
+                      ),
+                    ),
+                    child: Center(
+                      child: InkWell(
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                            'Back',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontSize: AppSize(context).smallText2,
+                              color: AppColors.indigoColor,
+                              fontWeight: FontWeight.normal,
+                              fontStyle: FontStyle.italic,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              Expanded(
+                child: InkWell(
+                  onTap: () {
+                    setState(() {});
+                  },
+                  child: Center(
+                    child: InkWell(
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(
+                          'Select',
+                          style: TextStyle(
+                            fontSize: AppSize(context).smallText2,
+                            color: AppColors.indigoColor,
+                            fontWeight: FontWeight.normal,
+                            fontStyle: FontStyle.italic,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          )
+        ],
+      ),
+    );
+  }
+}
+
+class CustomInputTextForm extends StatelessWidget {
+  final String title;
+  final String? hint;
+  final TextEditingController controller;
+  final int? maxLine;
+  final bool? isLast;
+  final bool? isAddCar;
+  final bool? isActive;
+  final bool? isExpenses;
+  final bool? readOnly;
+  final TextInputType? textInputType;
+  final Function()? onTap;
+  const CustomInputTextForm({
+    super.key,
+    required this.title,
+    required this.controller,
+    this.maxLine,
+    this.isLast = false,
+    this.onTap,
+    this.textInputType,
+    this.isAddCar = false,
+    this.hint,
+    this.isActive = false,
+    this.readOnly,
+    this.isExpenses = false,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          title,
+          style: TextStyle(
+            fontSize: isAddCar == true
+                ? AppSize(context).smallText2
+                : AppSize(context).smallText4,
+            color: AppColors.darkGreyColor,
+            fontWeight: isAddCar == true ? FontWeight.w500 : FontWeight.normal,
+          ),
+        ),
+        maxLine != null
+            ? SizedBox(height: AppSize(context).height * 0.01)
+            : const SizedBox(),
+        SizedBox(
+          height: isAddCar == true
+              ? AppSize(context).height * 0.055
+              : maxLine != null
+                  ? null
+                  : AppSize(context).height * 0.04,
+          child: WidgetTextField(
+            hint,
+            textStyle: TextStyle(fontSize: AppSize(context).smallText3),
+            controller: controller,
+            padding:
+                isAddCar == true ? const EdgeInsets.all(5) : EdgeInsets.zero,
+            haveBorder: false,
+            keyboardType: textInputType,
+            maxLines: maxLine ?? 1,
+            onTap: onTap,
+            readOnly: readOnly ?? onTap != null ? true : false,
+            suffixIcon: onTap != null
+                ? isExpenses == true
+                    ? Text(
+                        'Add',
+                        textAlign: TextAlign.start,
+                        style: TextStyle(
+                          fontSize: AppSize(context).smallText4,
+                          color: AppColors.primaryColor,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      )
+                    : const Icon(Icons.arrow_drop_down)
+                : null,
+          ),
+        ),
+        isLast == true
+            ? const SizedBox()
+            : Divider(
+                height: 1,
+                color: isAddCar == false
+                    ? null
+                    : AppColors.lightGreyColor.withOpacity(0.7),
+              ),
+        isLast == true
+            ? const SizedBox()
+            : SizedBox(height: AppSize(context).height * 0.01),
+      ],
+    );
+  }
+}

@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+
 # test
 
 A new Flutter project.
@@ -16,6 +17,9 @@ For help getting started with Flutter development, view the
 [online documentation](https://docs.flutter.dev/), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
 =======
+
 # Templet-Application-Clean-Archetechers
+
 Templet-Application-Clean-Archetechers
->>>>>>> 85c5c951c2ba291c9e785db87e3edee430bad32c
+
+> > > > > > > 85c5c951c2ba291c9e785db87e3edee430bad32c
